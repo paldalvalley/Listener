@@ -18,3 +18,9 @@ Server 역할
    ipfs-api 이용할 것
    
 -> listener 이용하여 contract에서 발생한 event listen and handle
+
+Using language
+
+- node.js 10.9.0
+- express
+- ipfs-api
