@@ -4,16 +4,40 @@
  listener를 이용하여 contract 에서 발생한 event
  */
 
+require('dotenv').config();
 const createError = require('http-errors');
 const path = require('path');
 const express = require('express');
-const app = express();
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const api_routers = require('./routes/routes');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
 
-app.use('/api/*',api_routers); // routing 처리
+const api_routers = require('./routes/routes');
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Node.js의 native promise를 사용
+mongoose.Promise = global.Promise;
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(cors());
+
+app.use('/api',api_routers); // routing 처리
 app.use('*', express.static('clientApp')); // const clientApp = path.join(__dirname, '../client/build')
-app.listen(8888, (err)=> {
-  console.log('SYSTEM: HTTP SERVER RUNNING ON 8888 PORT');
+
+// CONNECT TO MONGODB SERVE
+mongoose.connect(process.env.Mongo_URI, { })
+    .then(()=> console.log('Successfully connected to mongodb'))
+    .catch(e => console.error(e));
+
+app.listen(port, (err)=> {
+  console.log(`SYSTEM: HTTP SERVER RUNNING ON ${port} PORT`);
 });
