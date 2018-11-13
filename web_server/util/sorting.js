@@ -2,7 +2,7 @@
 
 
 let sorting = (data) => {
-    let temp;
+    let temp = [];
     for (let i = 0; i < data.length; i++) {
         if (i == 0) {
             temp = data[i].post_nums;
@@ -10,9 +10,11 @@ let sorting = (data) => {
             temp = temp.concat(data[i].post_nums);
         }
     }
-    temp = temp.sort(function(a, b){
-        return b - a;
-    });
+    if (temp) {
+        temp = temp.sort(function (a, b) {
+            return b - a;
+        });
+    }
     return temp;
 };
 

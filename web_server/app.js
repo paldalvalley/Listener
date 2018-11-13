@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api',api_routers); // routing 처리
-app.use('*', express.static('clientApp')); // const clientApp = path.join(__dirname, '../client/build')
+app.use('*', express.static('clientApp')); // const clientApp = path.join(__dirname, '../client/build')i
 
 // CONNECT TO MONGODB SERVE
 mongoose.connect(process.env.Mongo_URI, { })
