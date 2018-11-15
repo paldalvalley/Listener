@@ -15,7 +15,7 @@ const User = require('../models/user');
 *  4) 키
 *  5) 몸무게
 *  6) 나이
-*  7) 성별 (boolean) */
+*  7) 성별  */
 var event_epoch = 0;
 const DEF_DELAY = 1000;
 
@@ -47,9 +47,6 @@ router.get('/test', async (req, res) => {
  */
 // post method
 router.get('/create', async (req, res) => {
-    // let ipfsHash_get = "QmR63mBkE9isWAAnvc5NmH4qfRmkYNZNgxHKHdpbCmnFiK";
-    // let addr = "0x98FE5eaFd3D61af18fB2b2322b8346dF05057202";
-    // console.log(contractInstance);
     let ipfsHash_get, wallet_address_get, post_num_get;
     let check = false;
     let flag;
