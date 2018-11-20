@@ -34,8 +34,21 @@ router.get('/userlist', async (req, res) => {
 });
 
 router.get('/test', async (req, res) => {
-    let num = await web3.eth.getBlockNumber();
-    console.log(num);
+    const buffer = ipfs.Buffer;
+    let obj = {
+        wallet_address: "0xB603C9Ca252ce89901C151Aedf24a41B95E33409",
+        nickname: "이병헌",
+        height: 189,
+        weight: 80,
+        age: 27,
+        sex: 0,
+        post_nums: 3, // 게시글 번호
+    };
+    let objectString = JSON.stringify(obj);
+    let bufferedString = buffer.from(objectString);
+    ipfs.add(bufferedString, (err, ipfshash) => {
+        console.log(ipfshash);
+    })
 })
 /* POST Data to DataBase */
 
