@@ -14,7 +14,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-const api_routers = require('./routes/routes');
+const index = require('./routes/index');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -30,7 +30,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/api',api_routers); // routing 처리
+app.use('/userlog', index);
 app.use('*', express.static('clientApp')); // const clientApp = path.join(__dirname, '../client/build')i
 
 // CONNECT TO MONGODB SERVE
